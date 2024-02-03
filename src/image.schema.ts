@@ -1,10 +1,10 @@
+// image.schema.ts
+
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export type ImageDocument = Image & Document;
-
 @Schema()
-export class Image {
+export class Image extends Document {
   @Prop()
   url: string;
 }
