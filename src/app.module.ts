@@ -1,17 +1,15 @@
-// app.module.ts
-
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { Image, ImageSchema } from './image.schema';
+import { ImageSchema } from './image.schema'; // Import ImageSchema here
 
 @Module({
   imports: [
     MongooseModule.forRoot(process.env.MONGODB_URL),
-    MongooseModule.forFeature([{ name: Image.name, schema: ImageSchema }]),
+    MongooseModule.forFeature([{ name: 'Image', schema: ImageSchema }]), // Import and define ImageSchema here
   ],
   controllers: [AppController],
-  providers: [AppService], // Ensure AppService is listed as a provider
+  providers: [AppService],
 })
 export class AppModule {}
