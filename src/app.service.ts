@@ -15,7 +15,7 @@ export class AppService {
   ) {
     // Initialize the S3 client with hardcoded credentials and region
     this.s3 = new S3({
-      accessKeyId: 'yAKIAR4PFA37XXREC4B7A',
+      accessKeyId: 'AKIAR4PFA37XXREC4B7A',
       secretAccessKey: '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',
       region: 'eu-west-2',
     });
