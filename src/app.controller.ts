@@ -1,6 +1,7 @@
 import { Controller, Get, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AppService } from './app.service';
+import { Express } from 'express';
 
 @Controller()
 export class AppController {
@@ -13,7 +14,7 @@ export class AppController {
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('image'))
-  async uploadFile(@UploadedFile() file: Express.Multer.File) {
+  async uploadFile(@UploadedFile() file: any) { // Use 'any' type temporarily
     return this.appService.uploadFile(file);
   }
 
