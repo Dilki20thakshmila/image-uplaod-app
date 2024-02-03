@@ -8,21 +8,26 @@ import { Image } from './image.schema';
 
 @Injectable()
 export class AppService {
-  constructor(@InjectModel('Image') private imageModel: Model<Image>) {}
+  private readonly s3: S3;
+
+  constructor(
+    @InjectModel('Image') private imageModel: Model<Image>
+  ) {
+    // Initialize the S3 client with hardcoded credentials and region
+    this.s3 = new S3({
+      accessKeyId: 'yAKIAR4PFA37XXREC4B7A',
+      secretAccessKey: 'y1urBoMy3bkIwxUnhb5MljVQXIjhU3WXUXq3Hnfe',
+      region: 'eu-west-2',
+    });
+  }
 
   getHello(): string {
     return 'Hello World!';
   }
 
   async uploadFile(file: Express.Multer.File) {
-    const s3 = new S3({
-      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-      region: process.env.AWS_REGION,
-    });
-
-    const uploadResult = await s3.upload({
-      Bucket: process.env.S3_BUCKET_NAME,
+    const uploadResult = await this.s3.upload({
+      Bucket: 'marryem-storage',
       Key: `${uuidv4()}-${file.originalname}`,
       Body: createReadStream(file.path),
     }).promise();

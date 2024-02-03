@@ -6,7 +6,7 @@ import { ImageSchema } from './image.schema'; // Import ImageSchema here
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.MONGODB_URL),
+    MongooseModule.forRoot('mongodb+srv://dilki:ADbt20@cluster0.rlyibbt.mongodb.net/?retryWrites=true&w=majority'), // Hardcode MongoDB connection URL here
     MongooseModule.forFeature([{ name: 'Image', schema: ImageSchema }]), // Import and define ImageSchema here
   ],
   controllers: [AppController],
