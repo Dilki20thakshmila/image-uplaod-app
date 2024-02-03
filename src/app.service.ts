@@ -5,7 +5,6 @@ import { createReadStream } from 'fs';
 import { S3 } from 'aws-sdk';
 import { v4 as uuidv4 } from 'uuid';
 import { Image } from './image.schema';
-import { Express } from 'express'; // Import Express from 'express'
 
 @Injectable()
 export class AppService {
@@ -15,15 +14,18 @@ export class AppService {
     return 'Hello World!';
   }
 
-  async uploadFile(file: Express.Multer.File) { // Use Express.Multer.File type
-    const s3 = new S3();
-    const uploadResult = await s3
-      .upload({
-        Bucket: 'image-upload',
-        Key: `${uuidv4()}-${file.originalname}`,
-        Body: createReadStream(file.path),
-      })
-      .promise();
+  async uploadFile(file: Express.Multer.File) {
+    const s3 = new S3({
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+      region: process.env.AWS_REGION,
+    });
+
+    const uploadResult = await s3.upload({
+      Bucket: process.env.S3_BUCKET_NAME,
+      Key: `${uuidv4()}-${file.originalname}`,
+      Body: createReadStream(file.path),
+    }).promise();
 
     const image = new this.imageModel({
       url: uploadResult.Location,
