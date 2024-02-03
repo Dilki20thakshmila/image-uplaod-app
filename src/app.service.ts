@@ -8,7 +8,7 @@ import { Image } from './image.schema';
 
 @Injectable()
 export class AppService {
-  constructor(@InjectModel(Image.name) private imageModel: Model<Image>) {}
+  constructor(@InjectModel('Image') private imageModel: Model<Image>) {}
 
   getHello(): string {
     return 'Hello World!';
