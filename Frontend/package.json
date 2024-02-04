@@ -1,7 +1,6 @@
 {
   "name": "frontend",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start && open http://localhost:3000",
@@ -20,7 +19,8 @@
     "react-progress-bar": "^0.1.0",
     "react-router-dom": "^6.22.0",
     "react-script": "^2.0.5",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "react-toastify": "^10.0.4"
   },
   "browserslist": {
     "production": [
@@ -33,5 +33,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": ""
 }
