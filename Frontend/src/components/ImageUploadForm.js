@@ -23,6 +23,7 @@ const ImageUploadForm = () => {
           setProgress(percentage);
         },
       });
+      
       setUploadStatus('Upload successful');
       setFile(null); // Clear the file input field after successful upload
       console.log('Upload successful', response.data);
