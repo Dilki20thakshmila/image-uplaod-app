@@ -1,0 +1,50 @@
+/* styles.css */
+
+.upload-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .upload-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .upload-form input[type="file"] {
+    display: block;
+    margin: 0 auto 20px;
+  }
+  
+  .upload-form button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .image-viewer {
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  
+  .image-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+  }
+  
+  .image-item img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
