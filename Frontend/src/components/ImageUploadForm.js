@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import CircularProgress from '@mui/material/CircularProgress'; // Import CircularProgress
+import CircularProgress from '@mui/material/CircularProgress';
 
 const ImageUploadForm = () => {
   const [file, setFile] = useState(null);
@@ -29,7 +29,7 @@ const ImageUploadForm = () => {
       const response = await axios.post('http://localhost:5000/upload', formData, {
         onUploadProgress: (progressEvent) => {
           const percentage = Math.round((progressEvent.loaded / progressEvent.total) * 100);
-          setProgress(percentage); // Update progress state
+          setProgress(percentage);
         },
       });
       toast.success('Image uploaded successfully!');
@@ -40,26 +40,29 @@ const ImageUploadForm = () => {
       console.error('Error uploading file', error);
     } finally {
       setUploading(false);
-      setProgress(0); // Reset progress state
+      setProgress(0);
     }
   };
 
   return (
-    <Form>
-      <Form.Group controlId="formFile" className="mb-3">
-        <Form.Label>Choose Image File</Form.Label>
-        <Form.Control type="file" onChange={handleFileChange} />
-      </Form.Group>
-      <Button variant="primary" onClick={handleUpload}>
-        Upload
-      </Button>
-      {uploading && (
-        <div style={{ textAlign: 'center', marginTop: '20px' }}>
-          <CircularProgress variant="determinate" value={progress} />
-          <div>{`${progress}%`}</div>
-        </div>
-      )}
-    </Form>
+    <div>
+      <ToastContainer /> {/* ToastContainer for displaying toast messages */}
+      <Form>
+        <Form.Group controlId="formFile" className="mb-3">
+          <Form.Label>Choose Image File</Form.Label>
+          <Form.Control type="file" onChange={handleFileChange} disabled={uploading} />
+        </Form.Group>
+        <Button variant="primary" onClick={handleUpload} disabled={uploading}>
+          {uploading ? 'Uploading...' : 'Upload'}
+        </Button>
+        {uploading && (
+          <div style={{ textAlign: 'center', marginTop: '20px' }}>
+            <CircularProgress variant="determinate" value={progress} />
+            <div>{`${progress}%`}</div>
+          </div>
+        )}
+      </Form>
+    </div>
   );
 };
 
