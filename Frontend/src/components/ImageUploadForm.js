@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
-import { toast } from 'react-toastify'; // Import toast from react-toastify
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CircularProgress from '@mui/material/CircularProgress'; // Import CircularProgress
 
 const ImageUploadForm = () => {
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -27,17 +29,18 @@ const ImageUploadForm = () => {
       const response = await axios.post('http://localhost:5000/upload', formData, {
         onUploadProgress: (progressEvent) => {
           const percentage = Math.round((progressEvent.loaded / progressEvent.total) * 100);
-          // Update progress bar
+          setProgress(percentage); // Update progress state
         },
       });
-      toast.success('Upload successful');
+      toast.success('Image uploaded successfully!');
       setFile(null); // Clear the file input field after successful upload
       console.log('Upload successful', response.data);
     } catch (error) {
-      toast.error('Error uploading file');
+      toast.error('Error uploading file. Please try again later.');
       console.error('Error uploading file', error);
     } finally {
       setUploading(false);
+      setProgress(0); // Reset progress state
     }
   };
 
@@ -50,7 +53,12 @@ const ImageUploadForm = () => {
       <Button variant="primary" onClick={handleUpload}>
         Upload
       </Button>
-      {uploading && <progress />} {/* Show progress bar if uploading */}
+      {uploading && (
+        <div style={{ textAlign: 'center', marginTop: '20px' }}>
+          <CircularProgress variant="determinate" value={progress} />
+          <div>{`${progress}%`}</div>
+        </div>
+      )}
     </Form>
   );
 };
