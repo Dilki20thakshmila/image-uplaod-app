@@ -28,20 +28,22 @@ let AppService = class AppService {
             region: 'eu-west-2',
         });
     }
-    getHello() {
-        return 'Hello World!';
-    }
     async uploadFile(file) {
-        const uploadResult = await this.s3.upload({
-            Bucket: 'marryem-storage',
-            Key: `${(0, uuid_1.v4)()}-${file.originalname}`,
-            Body: (0, fs_1.createReadStream)(file.path),
-        }).promise();
-        const image = new this.imageModel({
-            url: uploadResult.Location,
-        });
-        await image.save();
-        return { url: uploadResult.Location };
+        try {
+            const uploadResult = await this.s3.upload({
+                Bucket: 'marryem-storage',
+                Key: `${(0, uuid_1.v4)()}-${file.originalname}`,
+                Body: (0, fs_1.createReadStream)(file.path),
+            }).promise();
+            const image = new this.imageModel({
+                url: uploadResult.Location,
+            });
+            await image.save();
+            return { message: 'File uploaded successfully', url: uploadResult.Location };
+        }
+        catch (error) {
+            throw new Error('Error uploading file');
+        }
     }
     async getImages() {
         return this.imageModel.find().exec();

@@ -29,8 +29,8 @@ export declare class AppService {
     private imageModel;
     private readonly s3;
     constructor(imageModel: Model<Image>);
-    getHello(): string;
     uploadFile(file: Express.Multer.File): Promise<{
+        message: string;
         url: string;
     }>;
     getImages(): Promise<(import("mongoose").Document<unknown, {}, Image> & Image & {

@@ -28,8 +28,8 @@ import { AppService } from './app.service';
 export declare class AppController {
     private readonly appService;
     constructor(appService: AppService);
-    getHello(): string;
     uploadFile(file: Express.Multer.File): Promise<{
+        message: string;
         url: string;
     }>;
     getImages(): Promise<(import("mongoose").Document<unknown, {}, import("./image.schema").Image> & import("./image.schema").Image & {
