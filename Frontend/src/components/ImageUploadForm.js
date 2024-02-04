@@ -1,11 +1,12 @@
+// ImageUploadForm.js
 import React, { useState } from 'react';
+import { Form, Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
-import ProgressBar from 'react-bootstrap/ProgressBar';
 
 const ImageUploadForm = () => {
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState(0);
-  const [message, setMessage] = useState('');
+  const [uploadStatus, setUploadStatus] = useState('');
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -22,21 +23,27 @@ const ImageUploadForm = () => {
           setProgress(percentage);
         },
       });
-      setMessage('Upload successful');
+      setUploadStatus('Upload successful');
+      setFile(null); // Clear the file input field after successful upload
       console.log('Upload successful', response.data);
     } catch (error) {
-      setMessage('Error uploading file');
+      setUploadStatus('Error uploading file');
       console.error('Error uploading file', error);
     }
   };
 
   return (
-    <div>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload</button>
-      <ProgressBar now={progress} label={`${progress}%`} />
-      <p>{message}</p>
-    </div>
+    <Form>
+      <Form.Group controlId="formFile" className="mb-3">
+        <Form.Label>Choose Image File</Form.Label>
+        <Form.Control type="file" onChange={handleFileChange} />
+      </Form.Group>
+      <Button variant="primary" onClick={handleUpload}>
+        Upload
+      </Button>
+      {progress > 0 && <progress value={progress} max="100" />}
+      {uploadStatus && <Alert variant={uploadStatus.includes('successful') ? 'success' : 'danger'}>{uploadStatus}</Alert>}
+    </Form>
   );
 };
 

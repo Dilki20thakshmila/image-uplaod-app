@@ -21,11 +21,8 @@ export class AppService {
     });
   }
 
-  getHello(): string {
-    return 'Hello World!';
-  }
-
   async uploadFile(file: Express.Multer.File) {
+   try{
     const uploadResult = await this.s3.upload({
       Bucket: 'marryem-storage',
       Key: `${uuidv4()}-${file.originalname}`,
@@ -37,8 +34,12 @@ export class AppService {
     });
     await image.save();
 
-    return { url: uploadResult.Location };
+    return { message: 'File uploaded successfully', url: uploadResult.Location };
+    
+  } catch (error) {
+    throw new Error('Error uploading file');
   }
+}
 
   async getImages() {
     return this.imageModel.find().exec();
