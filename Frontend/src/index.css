@@ -1,9 +1,12 @@
 /* ImageUploadForm.css */
 .upload-container {
+  margin: 0 auto; /* Center the container horizontally */
   margin-top: 50px;
   width: 800px;
   height: 500px;
-  
+  display: flex; /* Enable flexbox layout */
+  justify-content: center; /* Center children horizontally */
+  align-items: center; /* Center children vertically */
 }
 
 .upload-form {
@@ -22,26 +25,24 @@
   margin-top: 20px;
 }
 
-/* Adjust the size of the input bar */
 .upload-form input[type="file"] {
-  /* Adjust width and padding as needed */
-  width: 100%; /* Set to 100% to span the entire width of the form */
-  padding: 10px; /* Increase or decrease padding as needed */
-  margin-bottom: 10px; /* Adjust margin as needed */
+  width: 100%; 
+  padding: 10px; 
+  margin-bottom: 10px; 
 }
 
 /* ImageViewer.css */
 .view-container {
+  margin: 0 auto; /* Center the container horizontally */
   margin-top: 200px;
   width: 800px;
   height: 500px;
 }
 .review-btn {
   margin-top: 20px;
-  background-color: #EBD9B4;
-  color:black;
-  font-family: bold;
-  
+  background-color: #EBD9B4; /* Change button background color */
+  color: black;
+  font-weight: bold;
 }
 
 .image-item {

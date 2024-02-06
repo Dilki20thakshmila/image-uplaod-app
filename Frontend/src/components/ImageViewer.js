@@ -32,9 +32,9 @@ const ImageViewer = () => {
 
   return (
     <Container className="view-container">
-      <Button variant="primary" onClick={handleReviewClick} className="review-btn">
+       <Button variant="primary" onClick={handleReviewClick} className="review-btn" style={{ backgroundColor: '#638889' }}>
         Review Uploaded Images
-      </Button>
+       </Button>
 
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>

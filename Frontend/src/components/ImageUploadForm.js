@@ -56,9 +56,9 @@ const ImageUploadForm = () => {
               <Form.Label>Choose Image File</Form.Label>
               <Form.Control type="file" onChange={handleFileChange} disabled={uploading} />
             </Form.Group>
-            <Button variant="primary" onClick={handleUpload} disabled={uploading}>
-              {uploading ? 'Uploading...' : 'Upload'}
-            </Button>
+                  <Button variant="primary" onClick={handleUpload} disabled={uploading} style={{ backgroundColor: '#9DBC98' }}>
+                    {uploading ? 'Uploading...' : 'Upload'}
+                  </Button>
             {uploading && (
               <div className="upload-progress">
                 <CircularProgress variant="determinate" value={progress} />
