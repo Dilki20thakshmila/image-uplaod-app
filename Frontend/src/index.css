@@ -1,50 +1,44 @@
-/* styles.css */
+/* ImageUploadForm.css */
+.upload-container {
+  margin-top: 50px;
+  width: 800px;
+  height: 500px;
+}
 
 .upload-form {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
-  
-  .upload-form h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .upload-form input[type="file"] {
-    display: block;
-    margin: 0 auto 20px;
-  }
-  
-  .upload-form button {
-    display: block;
-    margin: 0 auto;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .image-viewer {
-    max-width: 800px;
-    margin: 20px auto;
-  }
-  
-  .image-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-gap: 20px;
-  }
-  
-  .image-item img {
-    width: 100%;
-    height: auto;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
+  background-color: #cababa;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.upload-form label {
+  font-weight: bold;
+}
+
+.upload-progress {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Adjust the size of the input bar */
+.upload-form input[type="file"] {
+  /* Adjust width and padding as needed */
+  width: 100%; /* Set to 100% to span the entire width of the form */
+  padding: 10px; /* Increase or decrease padding as needed */
+  margin-bottom: 10px; /* Adjust margin as needed */
+}
+
+/* ImageViewer.css */
+.upload-container {
+  margin-top: 50px;
+  width: 800px;
+  height: 500px;
+}
+.review-btn {
+  margin-top: 20px;
+}
+
+.image-item {
+  margin-bottom: 20px;
+}

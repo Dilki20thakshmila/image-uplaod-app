@@ -1,9 +1,11 @@
+// ImageUploadForm.js
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CircularProgress from '@mui/material/CircularProgress';
+import '../index.css'; // Import component-specific styles
 
 const ImageUploadForm = () => {
   const [file, setFile] = useState(null);
@@ -45,24 +47,28 @@ const ImageUploadForm = () => {
   };
 
   return (
-    <div>
+    <Container className="upload-container">
       <ToastContainer /> {/* ToastContainer for displaying toast messages */}
-      <Form>
-        <Form.Group controlId="formFile" className="mb-3">
-          <Form.Label>Choose Image File</Form.Label>
-          <Form.Control type="file" onChange={handleFileChange} disabled={uploading} />
-        </Form.Group>
-        <Button variant="primary" onClick={handleUpload} disabled={uploading}>
-          {uploading ? 'Uploading...' : 'Upload'}
-        </Button>
-        {uploading && (
-          <div style={{ textAlign: 'center', marginTop: '20px' }}>
-            <CircularProgress variant="determinate" value={progress} />
-            <div>{`${progress}%`}</div>
-          </div>
-        )}
-      </Form>
-    </div>
+      <Row className="justify-content-md-center">
+        <Col md={6}>
+          <Form className="upload-form">
+            <Form.Group controlId="formFile">
+              <Form.Label>Choose Image File</Form.Label>
+              <Form.Control type="file" onChange={handleFileChange} disabled={uploading} />
+            </Form.Group>
+            <Button variant="primary" onClick={handleUpload} disabled={uploading}>
+              {uploading ? 'Uploading...' : 'Upload'}
+            </Button>
+            {uploading && (
+              <div className="upload-progress">
+                <CircularProgress variant="determinate" value={progress} />
+                <div>{`${progress}%`}</div>
+              </div>
+            )}
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

@@ -1,7 +1,8 @@
 // ImageViewer.js
 import React, { useState, useEffect } from 'react';
-import { Button, Modal, Image } from 'react-bootstrap';
+import { Button, Modal, Image, Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
+import '../index.css'; // Import component-specific styles
 
 const ImageViewer = () => {
   const [showModal, setShowModal] = useState(false);
@@ -30,8 +31,8 @@ const ImageViewer = () => {
   };
 
   return (
-    <div>
-      <Button variant="primary" onClick={handleReviewClick}>
+    <Container className="view-container">
+      <Button variant="primary" onClick={handleReviewClick} className="review-btn">
         Review Uploaded Images
       </Button>
 
@@ -40,11 +41,15 @@ const ImageViewer = () => {
           <Modal.Title>Uploaded Images</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {images.map((image, index) => (
-            <div key={index}>
-              <Image src={image.url} thumbnail />
-            </div>
-          ))}
+          <Container>
+            <Row>
+              {images.map((image, index) => (
+                <Col md={4} key={index} className="image-item">
+                  <Image src={image.url} thumbnail />
+                </Col>
+              ))}
+            </Row>
+          </Container>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseModal}>
@@ -52,7 +57,7 @@ const ImageViewer = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </Container>
   );
 };
 
