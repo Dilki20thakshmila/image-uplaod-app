@@ -3,10 +3,11 @@
   margin-top: 50px;
   width: 800px;
   height: 500px;
+  
 }
 
 .upload-form {
-  background-color: #cababa;
+  background-color: #F9EFDB;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -30,13 +31,17 @@
 }
 
 /* ImageViewer.css */
-.upload-container {
-  margin-top: 50px;
+.view-container {
+  margin-top: 200px;
   width: 800px;
   height: 500px;
 }
 .review-btn {
   margin-top: 20px;
+  background-color: #EBD9B4;
+  color:black;
+  font-family: bold;
+  
 }
 
 .image-item {

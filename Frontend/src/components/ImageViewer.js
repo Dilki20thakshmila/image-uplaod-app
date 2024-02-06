@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Modal, Image, Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
-import '../index.css'; // Import component-specific styles
+import '../index.css';
 
 const ImageViewer = () => {
   const [showModal, setShowModal] = useState(false);

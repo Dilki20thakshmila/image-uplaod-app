@@ -5,7 +5,7 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CircularProgress from '@mui/material/CircularProgress';
-import '../index.css'; // Import component-specific styles
+import '../index.css'; 
 
 const ImageUploadForm = () => {
   const [file, setFile] = useState(null);
