@@ -4,9 +4,6 @@
   margin-top: 50px;
   width: 800px;
   height: 500px;
-  display: flex; /* Enable flexbox layout */
-  justify-content: center; /* Center children horizontally */
-  align-items: center; /* Center children vertically */
 }
 
 .upload-form {
